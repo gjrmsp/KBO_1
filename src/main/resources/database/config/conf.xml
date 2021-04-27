@@ -5,5 +5,8 @@
 
 <configuration>
 	<typeAliases>
+		<typeAlias type="com.kbo.s1.member.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.kbo.s1.util.Pager" alias="Pager"/>		
+		<typeAlias type="java.lang.Long" alias="Long"/>
 	</typeAliases>
 </configuration>

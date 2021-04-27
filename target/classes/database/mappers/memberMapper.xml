@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kbo.s1.member.MemberDAO">
+	<!-- 회원 가입 -->
+	<insert id="memberJoin" parameterType="MemberDTO">
+		insert into member values(#{id}, #{pw}, #{name}, #{email}, #{phone}, #{favoriteTeam})
+	</insert>
+	<!-- ID 중복 체크 -->
+	<select id="memberIdCheck" resultType="MemberDTO">
+		select count(*) from member where id=#{id}
+	</select>
+	<!-- 회원 로그인 -->
+	<select id="memberLogin" parameterType="MemberDTO" resultMap="memberLoginResult">
+		select * from member where id=#{id}
+	</select>
+	<!-- ID 찾기 -->
+	<select id="memberFindId" parameterType="MemberDTO" resultType="MemberDTO">
+		select id from member where email=#{email}
+	</select>
+	<!-- PW 찾기 -->
+	<update id="memberFindPw">
+		update member set pw=#{pw} where id=#{id}
+	</update>
+	<!-- 정보 수정 -->
+	<update id="memberUpdate" parameterType="MemberDTO">
+		update member set pw=#{pw}, name=#{name}, email=#{email}, phone=#{phone}, favoriteTeam=#{favoriteTeam} where id=#{id}
+	</update>
+	<!-- 회원 탈퇴 -->
+	<delete id="memberDelete" parameterType="MemberDTO">
+		delete member where id=#{id}
+	</delete>
+	
+	<resultMap type="MemberDTO" id="memberLoginResult">
+		<id property="id" column="id" />
+		<result property="pw" column="pw" />
+		<result property="name" column="name" />
+		<result property="phone" column="phone" />
+		<result property="email" column="email" />
+		<result property="favoriteTeam" column="favoriteTeam" />
+	</resultMap>	
+</mapper>
