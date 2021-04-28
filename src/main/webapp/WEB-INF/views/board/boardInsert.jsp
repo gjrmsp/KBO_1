@@ -30,20 +30,8 @@
 				<label for="contents">Contents:</label>
 				<textarea class="form-control myCheck" rows="5" id="contents" name="contents"></textarea>
 			</div>
-			<input type="button" id="add" value="ADD" class="btn btn-danger">
-			<div id="files" title="0"></div>
 			<input type="button" id="btn" value="WRITE" class="btn btn-primary">
 		</form>
-	</div>
-	<div id="sample">
-		<div class="input-group">
-			<div class="custom-file">
-				<input type="file" id="inputGroupFile04" class="custom-file-label" name="files">
-			</div>
-			<div class="input-group-append delete">
-				<input class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" value="Delete">
-			</div>
-		</div>
 	</div>
 	<script type="text/javascript" src="../resources/jquery/boardInsert.js"></script>
 	<script type="text/javascript" src="../resources/jquery/summerFile.js"></script>

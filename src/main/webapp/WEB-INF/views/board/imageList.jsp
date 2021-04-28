@@ -29,9 +29,11 @@
 				<c:forEach items="${list}" var="dto">
 					<tr>
 						<td>${dto.num}</td>
-						<td><a href="./${board}Select?num=${dto.num}"> <c:catch>
+						<td><span class="photo"><a href="./${board}Select?num=${dto.num}">
+								<img src="../resources/upload/notice/*">
+								<c:catch>
 									<c:forEach begin="1" end="${dto.depth}">--</c:forEach>
-								</c:catch>${dto.title}</a></td>
+								</c:catch>${dto.title}</a></span></td>
 						<td>${dto.writer}</td>
 						<td>${dto.regDate}</td>
 						<td>${dto.hit}</td>

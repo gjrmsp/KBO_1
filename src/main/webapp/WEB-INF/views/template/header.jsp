@@ -8,5 +8,8 @@
 		<li class="nav-item">
 			<a class="nav-link" href="${pageContext.request.contextPath}/notice/noticeList">NOTICE</a>
 		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="${pageContext.request.contextPath}/news/newsList">NEWS</a>
+		</li>
 	</ul>
 </nav>

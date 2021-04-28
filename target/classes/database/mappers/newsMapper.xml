@@ -3,12 +3,12 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.kbo.s1.board.notice.NoticeDAO">
+<mapper namespace="com.kbo.s1.board.news.NewsDAO">
 
-	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
+	<select id="getList" resultType="NewsDTO" parameterType="Pager">
 		select * from
 		(select rownum R, N.* from
-		(select * from notice where
+		(select * from news where
 		<choose>
 			<when test="kind == 'Writer'">
 				writer
@@ -21,11 +21,11 @@
 			</otherwise>
 		</choose>
 		like '%' || #{search} || '%' and num>0 order by num desc) N)
-		where R between #{startRow} and #{lastRow}
+		where R	between #{startRow} and #{lastRow}
 	</select>
 
 	<select id="getTotalCount" resultType="Long" parameterType="Pager">
-		select count(num) from notice
+		select count(num) from news
 		where
 		<choose>
 			<when test="kind == 'Writer'">
@@ -43,11 +43,11 @@
 
 	<select id="getSelect" parameterType="BoardDTO" resultMap="selectResult">
 		select N.*, NF.*
-		from notice N left join noticeFiles NF
+		from news N left join newsFiles NF
 		on N.num = NF.num where N.num=#{num}
 	</select>
 
-	<resultMap type="NoticeDTO" id="selectResult">
+	<resultMap type="NewsDTO" id="selectResult">
 		<id property="num" column="num" />
 		<result property="writer" column="writer" />
 		<result property="title" column="title" />
@@ -62,33 +62,32 @@
 	</resultMap>
 
 	<select id="getNum" resultType="java.lang.Long">
-		select notice_seq.nextval from dual
+		select news_seq.nextval from dual
 	</select>
 
 	<insert id="setInsert" parameterType="BoardDTO">
-		insert into notice
+		insert into news
 		values(#{num}, #{title}, #{writer}, #{contents}, sysdate, 0)
 	</insert>
 
 	<update id="setUpdate" parameterType="BoardDTO">
-		update notice set title=#{title}, contents=#{contents} where num=#{num}
+		update news set title=#{title}, contents=#{contents} where num=#{num}
 	</update>
 
 	<delete id="setDelete" parameterType="BoardDTO">
-		delete notice where num=#{num}
+		delete news where num=#{num}
 	</delete>
 
-	<select id="getFileSelect" parameterType="BoardFileDTO"
-		resultType="BoardFileDTO">
-		select * from noticeFiles where fileNum = #{fileNum}
+	<select id="getFileSelect" parameterType="BoardFileDTO" resultType="BoardFileDTO">
+		select * from newsFiles where fileNum=#{fileNum}
 	</select>
 
 	<insert id="setFileInsert" parameterType="BoardFileDTO">
-		insert into noticeFiles
+		insert into newsFiles
 		values(file_seq.nextval, #{num}, #{fileName}, #{origineName})
 	</insert>
 
 	<delete id="setFileDelete" parameterType="BoardFileDTO">
-		delete noticeFiles where fileNum = #{fileNum}
+		delete newsFiles where fileNum=#{fileNum}
 	</delete>
 </mapper>

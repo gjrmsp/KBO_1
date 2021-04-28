@@ -1,4 +1,4 @@
-package com.kbo.s1.board.notice;
+package com.kbo.s1.board.news;
 
 import java.util.List;
 
@@ -12,12 +12,12 @@ import com.kbo.s1.board.BoardFileDTO;
 import com.kbo.s1.util.Pager;
 
 @Repository
-public class NoticeDAO implements BoardDAO {
-
+public class NewsDAO implements BoardDAO {
+	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.kbo.s1.board.notice.NoticeDAO.";
-	
+	private final String NAMESPACE = "com.kbo.s1.board.news.NewsDAO.";
+
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getList", pager);
@@ -38,6 +38,10 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.insert(NAMESPACE+"setInsert", boardDTO);
 	}
 
+	public long getNum() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getNum");
+	}
+
 	@Override
 	public int setUpdate(BoardDTO boardDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"setUpdate", boardDTO);
@@ -47,14 +51,10 @@ public class NoticeDAO implements BoardDAO {
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"setDelete", boardDTO);
 	}
-	
+
 	@Override
 	public int setHitUpdate(BoardDTO boardDTO) throws Exception {
 		return sqlSession.update(NAMESPACE+"setHitUpdate", boardDTO);
-	}
-
-	public long getNum() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getNum");
 	}
 
 	@Override
@@ -72,4 +72,5 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.delete(NAMESPACE+"setFileDelete", boardFileDTO);
 	}
 
+	
 }
