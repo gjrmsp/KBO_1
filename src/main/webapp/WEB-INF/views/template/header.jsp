@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-</body>
-</html>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+	<!-- Links -->
+	<ul class="navbar-nav">
+		<li class="nav-item">
+			<a class="nav-link" href="${pageContext.request.contextPath}/notice/noticeList">NOTICE</a>
+		</li>
+	</ul>
+</nav>
