@@ -25,6 +25,6 @@ $("#btn").click(function() {
 	if(result) {
 		location.href="./memberJoin";
 	} else {
-		alert("약관에 동의");
+		alert("약관 동의는 필수입니다");
 	}
 });

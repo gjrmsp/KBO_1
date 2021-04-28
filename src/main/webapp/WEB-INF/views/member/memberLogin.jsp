@@ -31,6 +31,7 @@
 
 			<a href="${pageContext.request.contextPath}/member/memberJoinCheck" class="btn btn-danger" role="button">회원가입</a>
 			<button type="submit" class="btn btn-primary">로그인</button>
+			<a href="${pageContext.request.contextPath}/member/memberFindId" class="btn btn-warning" role="button">ID 찾기</a>
 		</form>
 	</div>
 </body>

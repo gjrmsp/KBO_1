@@ -17,10 +17,10 @@ let etcResult = true; // name, email, phone 결과
 
 // ID Check *********************************
 id.addEventListener("blur", function() {
-	let message = "6글자 미만입니다";
+	alert("6글자 미만입니다");
 	let c = "r1"
 	if(id.value.length>5){
-		message = "6글자 이상 입니다";
+		alert("6글자 이상 입니다");
 		c = "r2";
 		idCheckResult = true;
 	} else {
@@ -36,10 +36,10 @@ $("#id").blur(function() {
 	let id = $("#id").val();
 	$.get("./memberIdCheck?id="+id, function(result) {
 		result = result.trim();
-		let str ="사용가능한 ID 입니다";
+		let str = "사용 가능한 ID 입니다";
 		
-		if(result=='0') {
-			str ="중복 ID 입니다";
+		if(result=='0' && id.value.length<6) {
+			str = "사용 불가능한 ID 입니다";
 		}
 		
 		$("#idCheckResult").html(str);
@@ -50,10 +50,10 @@ $("#id").blur(function() {
 
 pw.addEventListener("blur", function(){
 	pwCheckResult=false;
-	let message = "8글자 미만입니다";
+	alert("8글자 미만입니다");
 	let c = "r1";
 	if(pw.value.length>7){
-		message = "8글자 이상입니다"
+		alert("8글자 이상입니다");
 		c= "r2";
 		pwCheckResult=true;
 	}
@@ -66,12 +66,12 @@ pw.addEventListener("blur", function(){
 // PW EQUAL CHECK **********************************
 pw2.addEventListener("blur", function() {
 	let message2 = "";
-		let c = "r1";
+	let c = "r1";
 
 	if(pw.value != pw2.value){
 		pw2.value="";
-		message2 = "비밀번호가 같지않습니다.";
-			c="r1";
+		message2 = "비밀번호가 같지 않습니다.";
+		c="r1";
 	} else {
 		pwEqualResult=true;
 		message2 = "비밀번호가 일치합니다.";
