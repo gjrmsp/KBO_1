@@ -1,4 +1,4 @@
-package com.kbo.s1.board.news;
+package com.kbo.s1.board.qna;
 
 import java.util.List;
 
@@ -12,11 +12,11 @@ import com.kbo.s1.board.BoardFileDTO;
 import com.kbo.s1.util.Pager;
 
 @Repository
-public class NewsDAO implements BoardDAO {
+public class QnaDAO implements BoardDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.kbo.s1.board.news.NewsDAO.";
+	private final String NAMESPACE = "com.kbo.s1.board.qna.QnaDAO.";
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -51,20 +51,12 @@ public class NewsDAO implements BoardDAO {
 		return sqlSession.update(NAMESPACE+"setHitUpdate", boardDTO);
 	}
 
-	public long getNum() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getNum");
+	public int setReply(QnaDTO qnaDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setReply", qnaDTO);
 	}
-
-	public int setFileInsert(BoardFileDTO boardFileDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"setFileInsert", boardFileDTO);
-	}
-
-	public BoardFileDTO getFileSelect(BoardFileDTO boardFileDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getFileSelect", boardFileDTO);
-	}
-
-	public int setFileDelete(BoardFileDTO boardFileDTO) throws Exception {
-		return sqlSession.delete(NAMESPACE+"setFileDelete", boardFileDTO);
+	
+	public int setReplyUpdate(QnaDTO qnaDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setReplyUpdate", qnaDTO);
 	}
 
 }

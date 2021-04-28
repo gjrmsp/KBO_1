@@ -43,7 +43,6 @@ public class NoticeService implements BoardService {
 		return noticeDAO.getSelect(boardDTO);
 	}
 
-	@Override
 	public int setInsert(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
 		long num = noticeDAO.getNum();
 		boardDTO.setNum(num);
@@ -62,7 +61,6 @@ public class NoticeService implements BoardService {
 		return result;
 	}
 
-	@Override
 	public int setUpdate(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
 		for(MultipartFile multipartFile:files) {
 			BoardFileDTO boardFileDTO = new BoardFileDTO();
