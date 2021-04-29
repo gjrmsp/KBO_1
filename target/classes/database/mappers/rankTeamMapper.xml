@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kbo.s1.rt.RankTeamDAO">
+	
+	<select id="getList" resultType="RankTeamDTO">
+		select rank() over(order by wnrt desc) as rankNum,
+		team, gcnt_s, wpnt, lwpn, dpnt, wnrt, wlpnt, streak, onbase, slugging, lately
+		from rankTeam order by rankNum
+	</select>
+
+	<select id="getSelect" parameterType="RankTeamDTO" resultMap="selectResult">
+		select * from rankTeam on team=#{team}
+	</select>
+
+	<resultMap type="RankTeamDTO" id="selectResult">
+		<id property="team" column="team" />
+		<result property="gcnt_s" column="gcnt_s" />
+		<result property="wpnt" column="wpnt" />
+		<result property="lwpn" column="lwpn" />
+		<result property="wnrt" column="wnrt" />
+		<result property="wlpnt" column="wlpnt" />
+		<result property="streak" column="streak" />
+		<result property="onbase" column="onbase" />
+		<result property="slugging" column="slugging" />
+		<result property="lately" column="lately" />
+	</resultMap>
+
+	<insert id="setInsert" parameterType="RankTeamDTO">
+		insert into rankTeam
+		values(#{team}, #{gcnt_s}, #{wpnt}, #{lwpn}, #{dpnt}, #{wnrt}, #{wlpnt}, #{streak}, #{onbase}, #{slugging}, #{lately})
+	</insert>
+	
+	<update id="setUpdate" parameterType="RankTeamDTO">
+		update rankTeam
+		set gcnt_s=#{gcnt_s}, wpnt=#{wpnt}, lwpn=#{lwpn}, dpnt=#{dpnt}, wnrt=#{wnrt}, wlpnt=#{wlpnt},
+		streak=#{streak}, onbase=#{onbase}, slugging=#{slugging}, lately=#{lately}
+		where team=#{team}
+	</update>
+	
+	<delete id="setDelete" parameterType="RankTeamDTO">
+		delete rankTeam where team=#{team}
+	</delete>
+</mapper>
