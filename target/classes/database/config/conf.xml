@@ -6,6 +6,8 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.kbo.s1.rt.RankTeamDTO" alias="RankTeamDTO"/>
+		<typeAlias type="com.kbo.s1.rt.RankBatterDTO" alias="RankBatterDTO"/>
+		<typeAlias type="com.kbo.s1.rt.RankPitcherDTO" alias="RankPitcherDTO"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
 	</typeAliases>
 </configuration>

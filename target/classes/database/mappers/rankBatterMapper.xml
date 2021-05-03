@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kbo.s1.rt.RankBatterDAO">
+	
+	<select id="getList" resultType="RankBatterDTO">
+		select rank() over(order by wnrt desc) as rankNum,
+		Batter, batavg, gcnt_s, atbat, hit, sbh, tbh, homerun, onbase, rbi,
+		hitball, score, steal, fourball, strikeout, onbase, slugging, ops, war
+		from rankBatter order by rankNum
+	</select>
+
+	<select id="getSelect" parameterType="RankBatterDTO" resultMap="selectResult">
+		select * from rankBatter on Batter=#{Batter}
+	</select>
+
+	<resultMap type="RankBatterDTO" id="selectResult">
+		<id property="Batter" column="Batter" />
+		<result property="batavg" column="batavg" />
+		<result property="gcnt_s" column="gcnt_s" />
+		<result property="atbat" column="atbat" />
+		<result property="hit" column="hit" />
+		<result property="sbh" column="sbh" />
+		<result property="tbh" column="tbh" />
+		<result property="homerun" column="homerun" />
+		<result property="onbase" column="onbase" />
+		<result property="rbi" column="rbi" />
+		<result property="hitball" column="hitball" />
+		<result property="score" column="score" />
+		<result property="steal" column="steal" />
+		<result property="fourball" column="fourball" />
+		<result property="strikeout" column="strikeout" />
+		<result property="onbase" column="onbase" />
+		<result property="slugging" column="slugging" />
+		<result property="ops" column="ops" />
+		<result property="war" column="war" />
+	</resultMap>
+
+	<insert id="setInsert" parameterType="RankBatterDTO">
+		insert into rankBatter
+		values(#{Batter}, #{gcnt_s}, #{wpnt}, #{lwpn}, #{dpnt}, #{wnrt}, #{wlpnt}, #{streak}, #{onbase}, #{slugging}, #{lately})
+	</insert>
+	
+	<update id="setUpdate" parameterType="RankBatterDTO">
+		update rankBatter
+		set gcnt_s=#{gcnt_s}, wpnt=#{wpnt}, lwpn=#{lwpn}, dpnt=#{dpnt}, wnrt=#{wnrt}, wlpnt=#{wlpnt},
+		streak=#{streak}, onbase=#{onbase}, slugging=#{slugging}, lately=#{lately}
+		where Batter=#{Batter}
+	</update>
+	
+	<delete id="setDelete" parameterType="RankBatterDTO">
+		delete rankBatter where Batter=#{Batter}
+	</delete>
+</mapper>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kbo.s1.rt.RankPitcherDAO">
+	
+	<select id="getList" resultType="RankPitcherDTO">
+		select rank() over(order by wnrt desc) as rankNum,
+		Pitcher, era, gcnt_s, inning, wpnt, lwpn, hold, strikeout, hitball,
+		homerunball, losepoint, fourball, deadball, whip, war
+		from rankPitcher order by rankNum
+	</select>
+
+	<select id="getSelect" parameterType="RankPitcherDTO" resultMap="selectResult">
+		select * from rankPitcher on Pitcher=#{Pitcher}
+	</select>
+
+	<resultMap type="RankPitcherDTO" id="selectResult">
+		<id property="Pitcher" column="Pitcher" />
+		<result property="era" column="era" />
+		<result property="gcnt_s" column="gcnt_s" />
+		<result property="inning" column="inning" />
+		<result property="wpnt" column="wpnt" />
+		<result property="lwpn" column="lwpn" />
+		<result property="save" column="save" />
+		<result property="hold" column="hold" />
+		<result property="strikeout" column="strikeout" />
+		<result property="hitball" column="hitball" />
+		<result property="homerunball" column="homerunball" />
+		<result property="losepoint" column="losepoint" />
+		<result property="fourball" column="fourball" />
+		<result property="deadball" column="deadball" />
+		<result property="whip" column="whip" />
+		<result property="war" column="war" />
+	</resultMap>
+
+	<insert id="setInsert" parameterType="RankPitcherDTO">
+		insert into rankPitcher
+		values(#{Pitcher}, #{gcnt_s}, #{wpnt}, #{lwpn}, #{dpnt}, #{wnrt}, #{wlpnt}, #{streak}, #{onbase}, #{slugging}, #{lately})
+	</insert>
+	
+	<update id="setUpdate" parameterType="RankPitcherDTO">
+		update rankPitcher
+		set gcnt_s=#{gcnt_s}, wpnt=#{wpnt}, lwpn=#{lwpn}, dpnt=#{dpnt}, wnrt=#{wnrt}, wlpnt=#{wlpnt},
+		streak=#{streak}, onbase=#{onbase}, slugging=#{slugging}, lately=#{lately}
+		where Pitcher=#{Pitcher}
+	</update>
+	
+	<delete id="setDelete" parameterType="RankPitcherDTO">
+		delete rankPitcher where Pitcher=#{Pitcher}
+	</delete>
+</mapper>

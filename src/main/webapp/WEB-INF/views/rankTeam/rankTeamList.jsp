@@ -48,6 +48,7 @@
 				</c:forEach>
 			</tbody>
 		</table>
+	<a href="./rankTeamInsert" class="btn btn-primary" role="button">등록</a>
 	</div>
 </body>
 </html>
