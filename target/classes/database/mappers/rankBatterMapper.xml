@@ -6,7 +6,7 @@
 <mapper namespace="com.kbo.s1.rt.RankBatterDAO">
 	
 	<select id="getList" resultType="RankBatterDTO">
-		select rank() over(order by wnrt desc) as rankNum,
+		select rank() over(order by batavg desc) as rankNum,
 		Batter, batavg, gcnt_s, atbat, hit, sbh, tbh, homerun, onbase, rbi,
 		hitball, score, steal, fourball, strikeout, onbase, slugging, ops, war
 		from rankBatter order by rankNum

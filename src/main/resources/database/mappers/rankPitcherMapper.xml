@@ -6,7 +6,7 @@
 <mapper namespace="com.kbo.s1.rt.RankPitcherDAO">
 	
 	<select id="getList" resultType="RankPitcherDTO">
-		select rank() over(order by wnrt desc) as rankNum,
+		select rank() over(order by era desc) as rankNum,
 		Pitcher, era, gcnt_s, inning, wpnt, lwpn, hold, strikeout, hitball,
 		homerunball, losepoint, fourball, deadball, whip, war
 		from rankPitcher order by rankNum

@@ -8,6 +8,12 @@
 		<li class="nav-item">
 			<a class="nav-link"	href="${pageContext.request.contextPath}/rankTeam/rankTeamList">팀 순위</a>
 		</li>
+		<li class="nav-item">
+			<a class="nav-link"	href="${pageContext.request.contextPath}/rankBatter/rankBatterList">타자 순위</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link"	href="${pageContext.request.contextPath}/rankPitcher/rankPitcherList">투수 순위</a>
+		</li>
 	</ul>
 
 </nav>
